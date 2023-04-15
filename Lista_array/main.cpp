@@ -15,16 +15,16 @@ int main()
     }
 
     lista.mostrar();
-    std::cout<<"El tamaño de la lista es "<<lista.longitud();
-    std::cout<<"\nLa capacidad de la lista es "<<lista.capacidad()<<"\n";
+    std::cout<<"\nEl tamaño de la lista es "<<lista.longitud();
+    std::cout<<"\nLa capacidad de la lista es "<<lista.capacidad()<<"\n\n";
 
     for(int i = 0; i < 30; i++){
         lista.insertar(i*2);
     }
 
     lista.mostrar();
-    std::cout<<"El tamaño de la lista es "<<lista.longitud();
-    std::cout<<"\nLa capacidad de la lista es "<<lista.capacidad()<<"\n";
+    std::cout<<"\nEl tamaño de la lista es "<<lista.longitud();
+    std::cout<<"\nLa capacidad de la lista es "<<lista.capacidad()<<"\n\n";
 
     for(int i = 0; i < lista.longitud()/2; i++){
         int pos = rand()%(lista.longitud());
@@ -46,6 +46,20 @@ int main()
     std::cout<<"\nInsertando en una posicion no existente\n";
     lista.insertar_intermedio(90, 105);
     lista.mostrar();
+
+    std::cout<<"\nBuscando el primer elemento con valor 12\n";
+    int pos = lista.buscar(12);
+    std::cout<<"El valor 12 se encuentra en la posicion "<<pos<<"\n";
+
+    std::cout<<"\nEliminando los elementos con valor 12\n";
+    lista.eliminar(12);
+    lista.mostrar();
+
+    std::cout<<"\nEliminando el elemento de la posicion 12\n";
+    lista.eliminar_pos(12);
+    lista.mostrar();
+
+
 
 
     return 0;
