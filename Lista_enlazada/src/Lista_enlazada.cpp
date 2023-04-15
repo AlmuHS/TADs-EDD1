@@ -185,11 +185,27 @@ int Lista_enlazada::buscar(int valor){
     elemento* aux = this->lista_ptr;
     int pos = 0;
 
-    while(aux->dato != valor && aux->siguiente != NULL){
-        aux = aux->siguiente;
-        pos++;
+    bool encontrado = false;
+
+    //Recorremos la lista hasta encontrar el valor o salirnos
+    //Debemos comprobar que el propio aux no sea NULL, en lugar de que su siguiente no lo sea, porque el valor podría encontrarse al final de la lista (el cual tendría su siguiente a NULL)
+
+    //Comprobaremos el contenido de la posición dentro del bucle, para asegurarnos de estar accediendo a un elemento válido (no nulo)
+    while(!encontrado && aux != NULL){
+
+        //Si hemos entrado al bucle, es que la posición no es nula, por lo que podemos comprobar el contenido del elemento actual sin peligro
+        //Si el valor de este elemento se corresponde con el buscado, ponemos encontrado a true para finalizar la búsqueda
+        if(aux->dato == valor) encontrado = true;
+
+        //Si no, seguimos buscando en la siguiente posición
+        else{
+            aux = aux->siguiente;
+            pos++;
+        }
     }
-    if(aux->siguiente != NULL) return pos;
+
+    //Si aux no es NULL, habremos encontrado el valor sin salirnos de la lista.
+    if(aux != NULL) return pos;
     else return -1;
 
 }
@@ -199,14 +215,18 @@ int Lista_enlazada::obtener(int pos){
     int i = 0;
     int valor;
 
+    //Recorremos la lista hasta esa posicion o hasta salirnos (en caso de que la lista no tenga suficientes elementos para llegar a esa posición)
     while(i < pos && aux != NULL){
         aux = aux->siguiente;
         i++;
     }
 
+    //Si aux no es NULL, entonces hemos encontrado esa posición dentro de la lista, con lo que nos guardaremos su valor
     if(aux != NULL){
         valor = aux->dato;
     }
+
+    //Si es NULL, no existe esa posición, por lo que guardaremos el valor -1 para avisar de esta situación
     else valor = -1;
 
     return valor;
