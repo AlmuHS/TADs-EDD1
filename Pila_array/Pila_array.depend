@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1681416026 source:/home/almu/Practica_EDD1/Pila_array/main.cpp
+	<iostream>
+	"Pila_array.h"
+
+1681414364 source:/home/almu/Practica_EDD1/Pila_array/src/Lista_array.cpp
+	<iostream>
+	"../include/Lista_array.h"
+
+1681414327 /home/almu/Practica_EDD1/Pila_array/include/Lista_array.h
+
+1681416353 source:/home/almu/Practica_EDD1/Pila_array/src/Pila_array.cpp
+	"Pila_array.h"
+
+1681416358 /home/almu/Practica_EDD1/Pila_array/include/Pila_array.h
+	"Lista_array.h"
+

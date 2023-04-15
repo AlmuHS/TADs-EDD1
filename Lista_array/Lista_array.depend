@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1680252134 source:/home/almu/Practica_EDD1/Lista_array/main.cpp
+	<iostream>
+	<cstdlib>
+	"include/Lista_array.h"
+
+1681460921 source:/home/almu/Practica_EDD1/Lista_array/src/Lista_array.cpp
+	<iostream>
+	"../include/Lista_array.h"
+
+1680001678 /home/almu/Practica_EDD1/Lista_array/include/Lista_array.h
+
