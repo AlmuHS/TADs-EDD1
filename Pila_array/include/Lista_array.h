@@ -17,7 +17,6 @@ class Lista_array
         void insertar_intermedio(int pos, int valor);
         void eliminar(int valor);
         void eliminar_pos(int pos);
-        void eliminar_final();
         int buscar(int valor);
         int obtener(int pos);
         bool esvacio();
