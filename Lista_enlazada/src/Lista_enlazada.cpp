@@ -13,14 +13,16 @@ void Lista_enlazada::insertar_inicio(int valor){
     elemento* nuevo = new elemento;
     nuevo->dato = valor;
 
-    //Por si acaso no se ha actualizado el puntero inicial
+    //Si la lista no está vacía, el siguiente del nuevo elemento será el actual elemento inicial
     if(this->lista_ptr != NULL)
         nuevo->siguiente = this->lista_ptr;
+    //Si la lista está vacía, el nuevo elemento será tanto el primero como el último
     else{
-        nuevo->siguiente = NULL;
-        this->ultimo = nuevo;
+        nuevo->siguiente = NULL; //Su siguiente es NULL, dado que es el último
+        this->ultimo = nuevo; //El puntero del último apuntará a este elemento
     }
 
+    //Independientemente de si la lista estaba vacía o no, una vez insertado el nuevo elemento, el puntero inicial debe apuntar a él
     this->lista_ptr = nuevo;
 
 }
@@ -28,7 +30,7 @@ void Lista_enlazada::insertar_inicio(int valor){
 void Lista_enlazada::insertar_final(int valor){
     elemento* nuevo = new elemento;
     nuevo->dato = valor;
-    nuevo->siguiente = NULL;
+    nuevo->siguiente = NULL; //el siguiente será NULL, porque será el último elemento de la lista
 
     //Si la lista está vacía, el elemento se asigna al puntero inicial
     if(this->es_vacia()){
@@ -37,7 +39,10 @@ void Lista_enlazada::insertar_final(int valor){
     }
     //Si no, se asigna al puntero final
     else{
+        //El puntero último apunta todavía al que será el nuevo penúltimo, por lo que el nuevo elemento será el siguiente a este (y nuevo último)
         this->ultimo->siguiente = nuevo;
+
+        //Una vez insertado el nuevo elemento tras el antiguo último, actualizamos el puntero último para que apunte al nuevo elemento (que será el nuevo último)
         this->ultimo = nuevo;
     }
 }
@@ -51,17 +56,20 @@ void Lista_enlazada::insertar_intermedio(int pos, int valor){
 
         //Navegamos hasta el elemento de la posicion anterior a donde queremos insertar
         int i = 0;
+
+        //El puntero aux almacenará el elemento anterior a la posición (en caso de que esta sea válida)
         elemento* aux = this->lista_ptr;
 
-        //Debemos comprobar que no nos estemos saliendo de la lista
-        while(i < pos-1 && aux->siguiente != NULL){
+        //Debemos comprobar que no nos estemos saliendo de la lista. Para saberlo, comprobamos que aux no sea NULL, lo cual indicaría que no hay elementos suficientes para obtener esa posición
+        while(i < pos-1 && aux != NULL){
             aux = aux->siguiente;
             i++;
         }
 
         /* Reasignamos los punteros */
 
-        if(aux->siguiente != NULL){
+        //Si el puntero aux no es NULL, no nos hemos salido de la lista, por lo que aux apuntará a la posición anterior a donde vamos a insertar
+        if(aux != NULL){
             //El siguiente del nuevo será el siguiente de su antiguo anterior
             nuevo->siguiente = aux->siguiente;
 
@@ -73,19 +81,32 @@ void Lista_enlazada::insertar_intermedio(int pos, int valor){
 }
 
 void Lista_enlazada::eliminar_inicio(){
+
+    //Si la lista no está vacía, debemos eliminar el elemento inicial, al que apunta el puntero inicial lista_ptr
     if(!this->es_vacia()){
+
+        //Nos guardamos la dirección del puntero inicial actual, para liberarla luego
         elemento *aux = this->lista_ptr;
+
+        //Si el puntero inicial tiene un siguiente no nulo, entonces hay mas de un elemento en la lista, por lo que el puntero inicial apuntará a su siguiente
         if(this->lista_ptr->siguiente != NULL){
             this->lista_ptr = this->lista_ptr->siguiente;
         }
+        //Si no hay elemento siguiente, quiere decir que solo queda un elemento en la lista, por lo que esta se quedará vacía al eliminarlo
+        //Por eso, el puntero inicial y el último se convertirán en nulos
         else{
             this->lista_ptr = NULL;
+            this->ultimo = NULL;
         }
+
+        //Una vez eliminado el elemento de la lista, liberamos su memoria con la dirección que guardamos en su puntero auxiliar
         delete aux;
     }
-    //Por si accidentalmente se ha quedado sin anular
-    else
+    //Si la lista está vacía, el puntero inicial y ultimo valdrá NULL. Los asignamos por si acaso
+    else{
         this->lista_ptr = NULL;
+        this->ultimo = NULL;
+    }
 }
 
 void Lista_enlazada::eliminar_final(){
@@ -101,16 +122,20 @@ void Lista_enlazada::eliminar_final(){
         }
         //En otro caso
         else{
-            //Navegamos hasta la penultima posicion
-            elemento* aux = this->lista_ptr; //ultima posicion
+            /* Navegamos hasta la penultima posicion */
+
+            //Este puntero, tras finalizar el recorrido, tendrá la dirección de la penúltima posición
+            elemento* aux = this->lista_ptr;
+
+            //La penúltima posición será la cual tenga como siguiente al último elemento
             while(aux->siguiente != this->ultimo){
                 aux = aux->siguiente;
             }
 
-            //Liberamos la memoria de la ultima posicion
+            //Liberamos la memoria de la actual ultima posicion
             delete this->ultimo;
 
-            //Actualizamos el ultimo con el antiguo penultimo
+            //Actualizamos el puntero ultimo con el antiguo penultimo, almacenado en aux
             this->ultimo = aux;
             this->ultimo->siguiente = NULL;
         }
@@ -119,20 +144,29 @@ void Lista_enlazada::eliminar_final(){
 }
 
 void Lista_enlazada::eliminar(int pos){
+
+    //Solo podemos eliminar un elemento si la lista no esta vacía
     if(pos >= 0 && !this->es_vacia()){
+
+        //Navegamos hasta la posición anterior a la que queremos eliminar
         int i = 0;
+
+        //Este puntero almacenará, tras el recorrido, la posición anterior a la que queremos eliminar
         elemento* aux = this->lista_ptr;
-        while(i < pos-1 && aux->siguiente != NULL){
+
+        //Recorremos hasta la posición, o hasta salirnos de la lista
+        while(i < pos-1 && aux != NULL){
             aux = aux->siguiente;
             i++;
         }
-        if(aux->siguiente != NULL){
-            elemento *aux2 = aux->siguiente;
-            aux->siguiente = aux2->siguiente;
-            delete aux2;
-        }
-        else{
-            delete aux;
+
+        //Si aux no es nulo, no nos hemos salido de la lista
+        if(aux != NULL){
+
+            //Para eliminar el elemento, hacemos que el elemento anterior apunte al siguiente del elemento a eliminar
+            elemento *aux2 = aux->siguiente; //este será el elemento a eliminar
+            aux->siguiente = aux2->siguiente;//reasignamos el siguiente del anterior al siguiente del que queremos eliminar
+            delete aux2; //y liberamos la memoria del elemento eliminado
         }
     }
 
@@ -165,7 +199,7 @@ int Lista_enlazada::obtener(int pos){
     int i = 0;
     int valor;
 
-    while(i < pos && aux->siguiente != NULL){
+    while(i < pos && aux != NULL){
         aux = aux->siguiente;
         i++;
     }
