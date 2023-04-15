@@ -12,7 +12,7 @@ void Pila_array::apilar(int dato){
 }
 
 void Pila_array::desapilar(){
-    lista.eliminar_final();
+    lista.eliminar_pos(this->Tope);
     this->Tope = lista.longitud()-1;
 }
 
