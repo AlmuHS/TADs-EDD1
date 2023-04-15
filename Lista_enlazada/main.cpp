@@ -52,8 +52,12 @@ int main()
     lista.mostrar();
     std::cout<<"\nLa capacidad de la lista es "<<lista.longitud()<<"\n";
 
-    std::cout<<"\nEliminando el último elemento de la lista\n";
-    lista.eliminar_final();
+    std::cout<<"\nEliminando el tercer elemento de la lista\n";
+    lista.eliminar(2);
+    lista.mostrar();
+
+    std::cout<<"\nEliminando el 100 elemento de la lista\n";
+    lista.eliminar(100);
     lista.mostrar();
 
     std::cout<<"\nVaciando la lista\n";
@@ -80,8 +84,30 @@ int main()
     std::cout<<"\nInsertando 4 elementos al inicio\n";
     for(int i = 0; i < 4; i++){
         lista.insertar_inicio(i*7);
+        //lista.insertar_intermedio(0, i*7);
     }
     lista.mostrar();
+
+    std::cout<<"\nBuscando el elemento con valor 4\n";
+    int pos = lista.buscar(4);
+    std::cout<<"El elemento está en la posicion "<<pos<<std::endl;
+
+    std::cout<<"\nBuscando el elemento con valor 24\n";
+    pos = lista.buscar(24);
+    std::cout<<"El elemento está en la posicion "<<pos<<std::endl;
+
+    std::cout<<"\nBuscando el elemento con valor 1000\n";
+    pos = lista.buscar(1000);
+    std::cout<<"El elemento está en la posicion "<<pos<<std::endl;
+
+    std::cout<<"\nObteniendo el elemento de la posicion 8\n";
+    int valor = lista.obtener(8);
+    std::cout<<"El valor de la posicion 8 es "<<valor<<std::endl;
+
+    std::cout<<"\nObteniendo el elemento de la posicion 28\n";
+    valor = lista.obtener(28);
+    std::cout<<"El valor de la posicion 28 es "<<valor<<std::endl;
+
 
     std::cout<<"\nEliminando el elemento inicial\n";
     lista.eliminar_inicio();

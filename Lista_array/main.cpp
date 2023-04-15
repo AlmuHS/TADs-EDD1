@@ -55,6 +55,10 @@ int main()
     lista.eliminar(12);
     lista.mostrar();
 
+    std::cout<<"\nEliminando los elementos con valor 3000\n";
+    lista.eliminar(3000);
+    lista.mostrar();
+
     std::cout<<"\nEliminando el elemento de la posicion 12\n";
     lista.eliminar_pos(12);
     lista.mostrar();
