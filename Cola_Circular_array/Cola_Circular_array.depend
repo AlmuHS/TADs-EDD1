@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1682281414 source:/home/almu/Practica_EDD1/Cola_Circular_array/main.cpp
+	<iostream>
+	"Cola_Circular_Array.h"
+
+1682283541 source:/home/almu/Practica_EDD1/Cola_Circular_array/src/Lista_array.cpp
+	<iostream>
+	"../include/Lista_array.h"
+
+1682283475 /home/almu/Practica_EDD1/Cola_Circular_array/include/Lista_array.h
+
+1682283516 source:/home/almu/Practica_EDD1/Cola_Circular_array/src/Cola_Circular_Array.cpp
+	"Cola_Circular_Array.h"
+
+1682276597 /home/almu/Practica_EDD1/Cola_Circular_array/include/Cola_Circular_Array.h
+	"Lista_array.h"
+
