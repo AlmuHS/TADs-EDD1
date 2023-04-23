@@ -67,8 +67,11 @@ void Lista_array::insertar(int valor){
 }
 
 void Lista_array::insertar_pos(int pos, int valor){
-    this->array_ptr[pos] = valor;
-    this->num_elementos++;
+
+    if(pos < this->tam){
+        this->array_ptr[pos] = valor;
+        this->num_elementos++;
+    }
 }
 
 void Lista_array::insertar_intermedio(int pos, int valor){

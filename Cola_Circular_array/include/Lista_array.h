@@ -8,11 +8,12 @@ class Lista_array
     int tam;
     int num_elementos;
 
-    void aumentar_longitud(int longitud);
-
     public:
         Lista_array();
         ~Lista_array();
+
+        void aumentar_longitud(int longitud);
+
         void insertar(int valor);
         void insertar_intermedio(int pos, int valor);
         void insertar_pos(int pos, int valor);

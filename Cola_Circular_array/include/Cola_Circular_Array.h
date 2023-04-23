@@ -18,6 +18,9 @@ class Cola_Circular_Array
         bool esvacia();
         int primero();
         int longitud();
+        int capacidad();
+
+        void mostrar();
 };
 
 #endif // COLA_CIRCULAR_ARRAY_H
