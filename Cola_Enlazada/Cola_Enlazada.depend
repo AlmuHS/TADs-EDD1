@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1681722781 source:/home/almu/Practica_EDD1/Cola_Enlazada/src/Lista_enlazada.cpp
+	"../include/Lista_enlazada.h"
+	<cstddef>
+	<iostream>
+
+1680023023 /home/almu/Practica_EDD1/Cola_Enlazada/include/Lista_enlazada.h
+
+1682018602 source:/home/almu/Practica_EDD1/Cola_Enlazada/src/Cola_enlazada.cpp
+	"Cola_enlazada.h"
+
+1682018320 /home/almu/Practica_EDD1/Cola_Enlazada/include/Cola_enlazada.h
+	"Cola_enlazada.h"
+	"Lista_enlazada.h"
+
+1682019022 source:/home/almu/Practica_EDD1/Cola_Enlazada/main.cpp
+	<iostream>
+	"Cola_enlazada.h"
+
