@@ -45,6 +45,19 @@ int main()
         //cola.mostrar();
     }
 
+    std::cout<<"Desencolando 10 elementos\n";
+    for(int i = 0; i < 10; i++){
+        int dato = cola.primero();
+        std::cout<<"Desencolando "<<dato<<std::endl;
+        cola.desencolar();
+    }
+
+    for(int i = 100; i < 122; i++){
+        std::cout<<"Encolando "<<i<<std::endl;
+        cola.encolar(i);
+        //cola.mostrar();
+    }
+
     std::cout<<"La longitud de la cola es "<<cola.longitud()<<"\n";
     std::cout<<"La capacidad de la cola es "<<cola.capacidad()<<"\n";
 
