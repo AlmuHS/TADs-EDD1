@@ -27,7 +27,7 @@ void Cola_Circular_Array::encolar(int dato){
         }
 
         //Reubicamos los datos en el array nuevo, de forma que queden ordenados linealmente
-        //El inicio quedará en la posición 1, el final en numelementos... etc
+        //El inicio quedará en la posición 0, el final en numelementos... etc
         //Debemos recorrer el array de forma circular (usando el inicio), pero insertarlos de forma lineal, empezando por el 0
         for(int i = 0; i < this->num_elementos; i++){
                 //Obtenemos el valor de la posición a la que apunta el inicio
