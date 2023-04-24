@@ -20,6 +20,7 @@ class Cola_Circular_Array
         int longitud();
         int capacidad();
 
+        //Este método no forma parte del TAD, solo lo usaremos para ver como están físicamente almacenados los elementos dentro del array
         void mostrar();
 };
 
