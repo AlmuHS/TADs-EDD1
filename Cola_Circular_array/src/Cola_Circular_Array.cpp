@@ -14,24 +14,28 @@ Cola_Circular_Array::Cola_Circular_Array()
 void Cola_Circular_Array::encolar(int dato){
     if(this->num_elementos == this->tam){
 
+        int* array_aux = new int[this->tam];
+
+
         this->cola_circular.aumentar_longitud(this->tam+10);
+
+        for(int i = 0; i < this->tam; i++){
+            array_aux[i] = this->cola_circular.obtener(i);
+        }
 
         int i;
         for(i = 0; i < this->num_elementos; i++){
-
-            if(i == this->inicio){
-                int valor = this->cola_circular.obtener(this->inicio);
+                int valor = array_aux[inicio];
                 this->cola_circular.modificar(i, valor);
                 this->inicio++;
 
                 if(this->inicio == this->tam) this->inicio = 0;
-            }
         }
 
+        delete []array_aux;
+
         //Ponemos las posiciones vacías a -1 para poderlas distinguir
-        /*for(int j = i; j < this->tam; j++){
-            this->cola_circular.modificar(j, -1);
-        }*/
+
 
         this->inicio=0;
         this->final = this->num_elementos;
@@ -66,7 +70,7 @@ int Cola_Circular_Array::primero(){
 }
 
 int Cola_Circular_Array::longitud(){
-    return this->tam;
+    return this->num_elementos;
 }
 
 int Cola_Circular_Array::capacidad(){
